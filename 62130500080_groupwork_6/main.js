@@ -61,6 +61,8 @@ const app = {
     data() {
         return {
             me: "./images/me.jpg",
+            tf: "./images/t-flag.png",
+            ef: "./images/e-flag.png",
             datas: {
                 username: null,
                 password: null,
@@ -73,15 +75,37 @@ const app = {
                 gender: null,
             },
             errors: null,
-            profile: null
+            // profile: null
+            profile: {
+                username: 'abcdfgh',
+                password: 123456,
+                email: 'nonkung2000@gmail.com',
+                fname: 'Varot',
+                lname: 'Tirakhuntorn',
+                title: 'SIT Student',
+                lang: 'Thai',
+                telno: '092-925-0174',
+                gender: 'm',
+            }
         }
     },
     methods: {
+        phoneAdjust(x) {
+            let temp = x.telno.replaceAll('-', '')
+            let str = ''
+            if(temp.length == 9){
+                str += temp.substr(0,2) + '-' + temp.substr(2,3) + '-' + temp.substr(5,4)
+            } else {
+                str += temp.substr(0,3) + '-' + temp.substr(3,3) + '-' + temp.substr(6,4)
+            }
+           x.telno = str
+        },
         checkForm() {
             this.errors = validate(this.datas,
                 constraints)
             if (!this.errors) {
                 this.profile = Object.assign({}, this.datas);
+                this.phoneAdjust(this.profile)
                 alert("Registered successfully.")
             }
         },

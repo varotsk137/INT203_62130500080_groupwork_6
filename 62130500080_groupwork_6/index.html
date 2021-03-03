@@ -26,7 +26,7 @@
 </head>
 
 <body>
-  <div id="app" class="container flex justify-center items-center">
+  <div id="app" class="container grid justify-center items-center">
     <div class="w-max h-max mx-auto bg-white rounded p-3 space-y-3">
 
       <div id="information" class="flex space-x-3 w-full">
@@ -34,11 +34,23 @@
         <div>
           <p class="text-2xl font-bold">Profile Preview</p>
           <div class="linebreak w-full h-0.5 bg-gray-200"></div>
-          <div v-if="profile" class="w-96">
-            <p class="text-xl font-semibold">{{profile.fname + ' ' + profile.lname}}</p>
-            <p class="text-sm text-gray-500">Email: {{ profile.email }}</p>
-            <p v-if="profile.title">Title: {{profile.title}}</p>
-            <p v-if="profile.lang">Language: {{profile.lang}} </p>
+          <div id="prepro" v-if="profile" class="w-96">
+            <div class="flex items-center">
+              <p class="text-2xl font-semibold">{{profile.fname + ' ' + profile.lname}}
+                <i class="material-icons align-middle text-blue-500" v-if="profile.gender == 'm'"> male </i>
+                <i class="material-icons align-middle text-red-500" v-else> female </i>
+              </p>
+              <img :src="ef" v-if="profile.lang=='English'">
+              <img :src="tf" v-if="profile.lang=='Thai'">
+            </div>
+            <p class="text-xl font-medium" v-if="profile.title">{{profile.title}}</p>
+            <p>Contact:</p>
+            <p class="text-sm text-gray-500">
+              <i class="material-icons align-middle text-gray-500"> mail </i>: {{ profile.email }}
+            </p>
+            <p class="text-sm text-gray-500">
+              <i class="material-icons align-middle text-gray-500"> phone </i>: {{ profile.telno }}
+            </p>
           </div>
         </div>
       </div>
@@ -97,14 +109,12 @@
               <p class="text-lg">Gender</p>
               <div class="flex space-x-10 mt-1.5">
                 <div class="space-x-2">
-                  <input type="radio" id="gender-m" name="gender" v-model="datas.gender"
-                class="" value="m">
-                <label for="gender-m" class="text-lg">Male</label>
-              </div>
+                  <input type="radio" id="gender-m" name="gender" v-model="datas.gender" class="" value="m">
+                  <label for="gender-m" class="text-lg">Male</label>
+                </div>
                 <div class="space-x-2">
-                  <input type="radio" id="gender-f" name="gender" v-model="datas.gender"
-                class="" value="f">
-                <label for="gender-f" class="text-lg">Female</label>
+                  <input type="radio" id="gender-f" name="gender" v-model="datas.gender" class="" value="f">
+                  <label for="gender-f" class="text-lg">Female</label>
                 </div>
               </div>
             </div>
@@ -118,8 +128,7 @@
             </div>
             <div>
               <label for="lang" class="text-lg">Prefer Language</label><br />
-              <select id="lang" name="lang" v-model="datas.lang"
-                class="bg-gray-100 border rounded px-4 py-2 mb-4">
+              <select id="lang" name="lang" v-model="datas.lang" class="bg-gray-100 border rounded px-4 py-2 mb-4">
                 <option value="English">English</option>
                 <option value="Thai">Thai</option>
               </select>
@@ -128,7 +137,8 @@
 
           <div class="flex justify-center space-x-3">
             <input type="submit" value="Submit" class="px-8 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600">
-            <input type="reset" @click="resetBtn" value="Reset" class="px-8 py-2 text-white bg-red-500 rounded-lg hover:bg-red-600">
+            <input type="reset" @click="resetBtn" value="Reset"
+              class="px-8 py-2 text-white bg-red-500 rounded-lg hover:bg-red-600">
           </div>
 
         </form>
