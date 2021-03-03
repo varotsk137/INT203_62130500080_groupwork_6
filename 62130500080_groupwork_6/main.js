@@ -1,13 +1,67 @@
+const constraints = {
+    fname: {
+        presence: true,
+    },
+    lname: {
+        presence: true,
+    },
+    username: {
+        presence: true,
+        exclusion: {
+            within: ["admin"],
+            message: "'%{value}' is not allowed"
+          },
+        length: {
+            minimum : 6,
+            message: "must be at least 6 characters"
+        }
+    },
+    password: {
+        presence: true,
+
+    },
+    email: {
+        presence: true,
+        email: true
+    },
+    title: {
+        presence: false
+    },
+    lang: {
+        presence: false
+    }
+}
+
 const app = {
     data() {
         return {
-                bg: "./images/bg.jpg"
-            ,   me: "./images/me.jpg"
-            ,   name: "Varot Tirakhuntorn"
-            ,   location: "Thailand"
-            ,   follower: 137
-            ,   projects: 2
-            ,   ranks: 222
+            me: "./images/me.jpg",
+            username: null,
+            password: null,
+            email: null,
+            fname: null,
+            lname: null,
+            title: null,
+            lang: null,
+            errors: null,
+            submit: false
+        }
+    },
+    methods: {
+        checkForm(){
+            this.errors = validate({fname: this.fname,
+                                    lname: this.lname,
+                                    username: this.username,
+                                    password: this.password,
+                                    title: this.title,
+                                    email: this.email,
+                                    lang: this.lang
+                                    },
+                                    constraints)
+            if(!this.errors){
+                this.submit = true;
+                alert("Registered successfully.")
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap"); */
 
 body {
   background-color: #545454;
@@ -11,11 +11,11 @@ body {
 }
 
 .card {
-  width: 380px;
+  width: 500px;
   border: none;
   border-radius: 15px;
   padding: 8px;
-  background-color: #fff;
+  background-color: rgb(223, 223, 223);
   position: relative;
   height: 370px
 }
@@ -43,7 +43,7 @@ body {
 .profile {
   position: absolute;
   top: -53px;
-  left: 38%;
+  left: 41%;
   height: 85px;
   width: 85px;
   border: 3px solid #fff;
