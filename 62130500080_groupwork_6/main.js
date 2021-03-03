@@ -29,6 +29,12 @@ const constraints = {
     },
     lang: {
         presence: false
+    },
+    telno: {
+        presence: true
+    },
+    gender: {
+        presence: false
     }
 }
 
@@ -44,7 +50,9 @@ const app = {
             title: null,
             lang: null,
             errors: null,
-            submit: false
+            submit: false,
+            telno: null,
+            gender: null
         }
     },
     methods: {
@@ -55,7 +63,9 @@ const app = {
                                     password: this.password,
                                     title: this.title,
                                     email: this.email,
-                                    lang: this.lang
+                                    lang: this.lang,
+                                    telno: this.telno,
+                                    gender: this.gender
                                     },
                                     constraints)
             if(!this.errors){
