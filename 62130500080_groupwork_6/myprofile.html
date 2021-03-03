@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic Vue Js - HelloWorld App</title>
+
+  <!-- https://google.github.io/material-design-icons/#icon-font-for-the-web -->
+  <!-- Using via Google Web Fonts -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <!-- https://tailwindcss.com/docs/installation -->
+  <!-- Using Tailwind via CDN -->
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+  <!-- https://v3.vuejs.org/guide/installation.html#release-notes -->
+  <!-- Vue CDN -->
+  <script src="https://unpkg.com/vue@next"></script>
+
+  <!-- CSS -->
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="app" class="container flex justify-center items-center">
+    <div class="card">
+      <div class="upper"> <img :src="bg" class="h-4/5"> </div>
+      <div class="user text-center justify-center">
+        <div class="profile"> <img :src="me" class="rounded-full" width="80"> </div>
+      </div>
+      <div class="mt-14 text-center">
+        <h4 class="mb-0 text-2xl">{{ name }}</h4> <span class="text-muted block mb-2 text-gray-500">{{ location }}</span> <button
+          class="follow text-white bg-blue-500 hover:bg-blue-700 transition ease-in-out">Follow</button>
+        <div class="flex justify-between items-center mt-4 px-4">
+          <div class="stats">
+            <h6 class="mb-0">Followers</h6> <span>{{ follower }}</span>
+          </div>
+          <div class="stats">
+            <h6 class="mb-0">Projects</h6> <span>{{ projects }}</span>
+          </div>
+          <div class="stats">
+            <h6 class="mb-0">Ranks</h6> <span>{{ ranks }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- my main.js -->
+  <script src="./profile.js"></script>
+</body>
+
+</html>
