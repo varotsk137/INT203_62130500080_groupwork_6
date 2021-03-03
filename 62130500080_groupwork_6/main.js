@@ -75,18 +75,8 @@ const app = {
                 gender: null,
             },
             errors: null,
-            // profile: null
-            profile: {
-                username: 'abcdfgh',
-                password: 123456,
-                email: 'nonkung2000@gmail.com',
-                fname: 'Varot',
-                lname: 'Tirakhuntorn',
-                title: 'SIT Student',
-                lang: 'Thai',
-                telno: '092-925-0174',
-                gender: 'm',
-            }
+            profile: null,
+            star: '<span class="text-red-500">*</span>'
         }
     },
     methods: {
@@ -106,7 +96,7 @@ const app = {
             if (!this.errors) {
                 this.profile = Object.assign({}, this.datas);
                 this.phoneAdjust(this.profile)
-                alert("Registered successfully.")
+                alert("Your profile is updated successfully.")
             }
         },
         resetBtn() {

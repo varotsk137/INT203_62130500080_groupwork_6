@@ -30,26 +30,27 @@
     <div class="w-max h-max mx-auto bg-white rounded p-3 space-y-3">
 
       <div id="information" class="flex space-x-3 w-full">
-        <img :src="me" width="150" class="rounded-full">
+        <img :src="me" width="175" class="rounded-full">
         <div>
-          <p class="text-2xl font-bold">Profile Preview</p>
+          <p class="text-3xl font-bold">Profile</p>
           <div class="linebreak w-full h-0.5 bg-gray-200"></div>
-          <div id="prepro" v-if="profile" class="w-96">
-            <div class="flex items-center">
-              <p class="text-2xl font-semibold">{{profile.fname + ' ' + profile.lname}}
+          <div id="prepro" v-if="profile" class="w-full">
+            <div class="flex items-center pl-3 space-x-4">
+              <p class="text-2xl font-semibold italic">{{profile.fname + ' ' + profile.lname}}
                 <i class="material-icons align-middle text-blue-500" v-if="profile.gender == 'm'"> male </i>
                 <i class="material-icons align-middle text-red-500" v-else> female </i>
               </p>
-              <img :src="ef" v-if="profile.lang=='English'">
-              <img :src="tf" v-if="profile.lang=='Thai'">
+              <img :src="ef" alt="Prefer English" v-if="profile.lang=='English'">
+              <img :src="tf" alt="Prefer Thai" v-if="profile.lang=='Thai'">
             </div>
-            <p class="text-xl font-medium" v-if="profile.title">{{profile.title}}</p>
-            <p>Contact:</p>
+            <p class="text-xl font-medium  pl-3" v-if="profile.title">({{profile.title}})</p>
+            <p class="text-base font-semibold text-gray-500 pl-5 italic">Contact</p>
+            <div class="linebreak ml-5 w-16 h-0.5 bg-gray-200"></div>
             <p class="text-sm text-gray-500">
-              <i class="material-icons align-middle text-gray-500"> mail </i>: {{ profile.email }}
+              <i class="material-icons align-middle text-gray-500 pl-3 "> mail </i>: {{ profile.email }}
             </p>
             <p class="text-sm text-gray-500">
-              <i class="material-icons align-middle text-gray-500"> phone </i>: {{ profile.telno }}
+              <i class="material-icons align-middle text-gray-500 pl-3 "> phone </i>: {{ profile.telno }}
             </p>
           </div>
         </div>
@@ -69,31 +70,32 @@
 
           <div class="flex space-x-10">
             <div>
-              <label for="username" class="text-lg">Username</label><br />
+                <label for="username" class="text-lg">Username<span v-html="star"></span></label>
+                <br />
               <input id="username" type="text" name="username" v-model="datas.username"
                 class="bg-gray-100 border rounded px-4 py-2 mb-4">
             </div>
             <div>
-              <label for="password" class="text-lg">Password</label><br />
+              <label for="password" class="text-lg">Password<span v-html="star"></span></label><br />
               <input id="password" type="password" name="password" v-model="datas.password"
                 class="bg-gray-100 border rounded px-4 py-2 mb-4">
             </div>
           </div>
 
           <div>
-            <label for="email" class="text-lg">Email Address*</label><br />
+            <label for="email" class="text-lg">Email Address<span v-html="star"></span></label><br />
             <input id="email" type="text" name="email" v-model="datas.email"
               class="bg-gray-100 border rounded px-4 py-2 mb-4 w-full">
           </div>
 
           <div class="flex space-x-10">
             <div>
-              <label for="fname" class="text-lg">First name*</label><br />
+              <label for="fname" class="text-lg">First name<span v-html="star"></span></label><br />
               <input id="fname" type="text" name="fname" v-model="datas.fname"
                 class="bg-gray-100 border rounded px-4 py-2 mb-4">
             </div>
             <div>
-              <label for="lname" class="text-lg">Last name*</label><br />
+              <label for="lname" class="text-lg">Last name<span v-html="star"></span></label><br />
               <input id="lname" type="text" name="lname" v-model="datas.lname"
                 class="bg-gray-100 border rounded px-4 py-2 mb-4">
             </div>
@@ -101,12 +103,12 @@
 
           <div class="flex space-x-10">
             <div>
-              <label for="telno" class="text-lg">Phone number</label><br />
+              <label for="telno" class="text-lg">Phone number<span v-html="star"></span></label><br />
               <input id="telno" type="text" name="telno" v-model="datas.telno"
                 class="bg-gray-100 border rounded px-4 py-2 mb-4">
             </div>
             <div>
-              <p class="text-lg">Gender</p>
+              <p class="text-lg">Gender<span v-html="star"></span></p>
               <div class="flex space-x-10 mt-1.5">
                 <div class="space-x-2">
                   <input type="radio" id="gender-m" name="gender" v-model="datas.gender" class="" value="m">
