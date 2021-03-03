@@ -10,15 +10,29 @@ const constraints = {
         exclusion: {
             within: ["admin"],
             message: "'%{value}' is not allowed"
-          },
+        },
         length: {
-            minimum : 6,
-            message: "must be at least 6 characters"
+            minimum: 6,
+            maximum: 20,
+            message: "must be between 6-20 characters"
+        },
+        format: {
+            pattern: "^[a-zA-Z0-9._-]{0,}$",
+            flags: "gm",
+            message: "can only use a-z, A-Z or 0-9 or _.-"
         }
     },
     password: {
         presence: true,
-
+        format: {
+            pattern: "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{0,}$",
+            flags: "gm",
+            message: "must contain at least one of Uppercase, Lowercase, Number,and Special Character"
+        },
+        length: {
+            minimum: 8,
+            message: "must be at least 8 characters"
+        }
     },
     email: {
         presence: true,
@@ -31,10 +45,15 @@ const constraints = {
         presence: false
     },
     telno: {
-        presence: true
+        presence: true,
+        format: {
+            pattern: "^[0-9]{2,3}[-]?[0-9]{3}[-]?[0-9]{4}$",
+            flags: "gmi",
+            message: "must be in format (xxx/xx)-xxx-xxxx or xxxxxxxxxx (9-10 characters)"
+        }
     },
     gender: {
-        presence: false
+        presence: true
     }
 }
 
@@ -42,37 +61,37 @@ const app = {
     data() {
         return {
             me: "./images/me.jpg",
-            username: null,
-            password: null,
-            email: null,
-            fname: null,
-            lname: null,
-            title: null,
-            lang: null,
+            datas: {
+                username: null,
+                password: null,
+                email: null,
+                fname: null,
+                lname: null,
+                title: null,
+                lang: null,
+                telno: null,
+                gender: null,
+            },
             errors: null,
-            submit: false,
-            telno: null,
-            gender: null
+            profile: null
         }
     },
     methods: {
-        checkForm(){
-            this.errors = validate({fname: this.fname,
-                                    lname: this.lname,
-                                    username: this.username,
-                                    password: this.password,
-                                    title: this.title,
-                                    email: this.email,
-                                    lang: this.lang,
-                                    telno: this.telno,
-                                    gender: this.gender
-                                    },
-                                    constraints)
-            if(!this.errors){
-                this.submit = true;
+        checkForm() {
+            this.errors = validate(this.datas,
+                constraints)
+            if (!this.errors) {
+                this.profile = Object.assign({}, this.datas);
                 alert("Registered successfully.")
             }
-        }
+        },
+        resetBtn() {
+            this.errors = null;
+            for (const data in this.datas) {
+                this.datas[data] = null
+                // console.log(data + ': ' + this.datas[data])
+            }
+        },
     }
 }
 

@@ -34,12 +34,11 @@
         <div>
           <p class="text-2xl font-bold">Profile Preview</p>
           <div class="linebreak w-full h-0.5 bg-gray-200"></div>
-          <div v-if="submit">
-            <p>Username: {{username}}</p>
-            <p>Name: {{fname + ' ' + lname}}</p>
-            <p>Email: {{ email }}</p>
-            <p v-if="title">Title: {{title}}</p>
-            <p v-if="lang">Language: {{lang}} </p>
+          <div v-if="profile" class="w-96">
+            <p class="text-xl font-semibold">{{profile.fname + ' ' + profile.lname}}</p>
+            <p class="text-sm text-gray-500">Email: {{ profile.email }}</p>
+            <p v-if="profile.title">Title: {{profile.title}}</p>
+            <p v-if="profile.lang">Language: {{profile.lang}} </p>
           </div>
         </div>
       </div>
@@ -52,38 +51,38 @@
           <p v-if="errors" class="text-red-500">
             <b>Please correct the following error(s):</b>
             <ul>
-              <li v-for="error in errors" class="text-red-500">{{ error }}</li>
+              <li v-for="error in errors" class="text-red-500 w-96">{{ error }}</li>
             </ul>
           </p>
 
           <div class="flex space-x-10">
             <div>
               <label for="username" class="text-lg">Username</label><br />
-              <input id="username" type="text" name="username" v-model="username"
+              <input id="username" type="text" name="username" v-model="datas.username"
                 class="bg-gray-100 border rounded px-4 py-2 mb-4">
             </div>
             <div>
               <label for="password" class="text-lg">Password</label><br />
-              <input id="password" type="password" name="password" v-model="password"
+              <input id="password" type="password" name="password" v-model="datas.password"
                 class="bg-gray-100 border rounded px-4 py-2 mb-4">
             </div>
           </div>
 
           <div>
             <label for="email" class="text-lg">Email Address*</label><br />
-            <input id="email" type="text" name="email" v-model="email"
+            <input id="email" type="text" name="email" v-model="datas.email"
               class="bg-gray-100 border rounded px-4 py-2 mb-4 w-full">
           </div>
 
           <div class="flex space-x-10">
             <div>
               <label for="fname" class="text-lg">First name*</label><br />
-              <input id="fname" type="text" name="fname" v-model="fname"
+              <input id="fname" type="text" name="fname" v-model="datas.fname"
                 class="bg-gray-100 border rounded px-4 py-2 mb-4">
             </div>
             <div>
               <label for="lname" class="text-lg">Last name*</label><br />
-              <input id="lname" type="text" name="lname" v-model="lname"
+              <input id="lname" type="text" name="lname" v-model="datas.lname"
                 class="bg-gray-100 border rounded px-4 py-2 mb-4">
             </div>
           </div>
@@ -91,19 +90,19 @@
           <div class="flex space-x-10">
             <div>
               <label for="telno" class="text-lg">Phone number</label><br />
-              <input id="telno" type="text" name="telno" v-model="telno"
+              <input id="telno" type="text" name="telno" v-model="datas.telno"
                 class="bg-gray-100 border rounded px-4 py-2 mb-4">
             </div>
             <div>
               <p class="text-lg">Gender</p>
               <div class="flex space-x-10 mt-1.5">
                 <div class="space-x-2">
-                  <input type="radio" id="gender-m" name="gender" v-model="gender"
+                  <input type="radio" id="gender-m" name="gender" v-model="datas.gender"
                 class="" value="m">
                 <label for="gender-m" class="text-lg">Male</label>
               </div>
                 <div class="space-x-2">
-                  <input type="radio" id="gender-f" name="gender" v-model="gender"
+                  <input type="radio" id="gender-f" name="gender" v-model="datas.gender"
                 class="" value="f">
                 <label for="gender-f" class="text-lg">Female</label>
                 </div>
@@ -114,12 +113,12 @@
           <div class="flex space-x-10">
             <div>
               <label for="title" class="text-lg">Title</label><br />
-              <input id="title" type="text" name="title" v-model="title"
+              <input id="title" type="text" name="title" v-model="datas.title"
                 class="bg-gray-100 border rounded px-4 py-2 mb-4">
             </div>
             <div>
               <label for="lang" class="text-lg">Prefer Language</label><br />
-              <select id="lang" name="lang" v-model="lang"
+              <select id="lang" name="lang" v-model="datas.lang"
                 class="bg-gray-100 border rounded px-4 py-2 mb-4">
                 <option value="English">English</option>
                 <option value="Thai">Thai</option>
@@ -129,7 +128,7 @@
 
           <div class="flex justify-center space-x-3">
             <input type="submit" value="Submit" class="px-8 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600">
-            <input type="reset" value="Reset" class="px-8 py-2 text-white bg-red-500 rounded-lg hover:bg-red-600">
+            <input type="reset" @click="resetBtn" value="Reset" class="px-8 py-2 text-white bg-red-500 rounded-lg hover:bg-red-600">
           </div>
 
         </form>
