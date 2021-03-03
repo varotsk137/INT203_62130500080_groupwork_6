@@ -1,9 +1,18 @@
 const constraints = {
     fname: {
         presence: true,
+        length: {
+            minimum: 1,
+            message: "can't be blank"
+        },
+        
     },
     lname: {
         presence: true,
+        length: {
+            minimum: 1,
+            message: "can't be blank"
+        },
     },
     username: {
         presence: true,
@@ -39,7 +48,7 @@ const constraints = {
         email: true
     },
     title: {
-        presence: false
+        presence: false,
     },
     lang: {
         presence: false
